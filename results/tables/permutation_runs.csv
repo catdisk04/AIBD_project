@@ -1,0 +1,504 @@
+analysis,scheme,perm,pooled ROC-AUC,within-batch ROC-AUC
+SNP dominant LR,observed,-1,0.690951,
+SNP dominant LR,shuffled,0,0.470083,
+SNP dominant LR,shuffled,1,0.454686,
+SNP dominant LR,shuffled,2,0.430514,
+SNP dominant LR,shuffled,3,0.430021,
+SNP dominant LR,shuffled,4,0.510885,
+SNP dominant LR,shuffled,5,0.498496,
+SNP dominant LR,shuffled,6,0.52489,
+SNP dominant LR,shuffled,7,0.514386,
+SNP dominant LR,shuffled,8,0.472888,
+SNP dominant LR,shuffled,9,0.543159,
+SNP dominant LR,shuffled,10,0.44214,
+SNP dominant LR,shuffled,11,0.481192,
+SNP dominant LR,shuffled,12,0.410629,
+SNP dominant LR,shuffled,13,0.467277,
+SNP dominant LR,shuffled,14,0.457043,
+SNP dominant LR,shuffled,15,0.49697,
+SNP dominant LR,shuffled,16,0.509381,
+SNP dominant LR,shuffled,17,0.481596,
+SNP dominant LR,shuffled,18,0.524172,
+SNP dominant LR,shuffled,19,0.464741,
+SNP dominant LR,shuffled,20,0.563089,
+SNP dominant LR,shuffled,21,0.520401,
+SNP dominant LR,shuffled,22,0.471699,
+SNP dominant LR,shuffled,23,0.566029,
+SNP dominant LR,shuffled,24,0.449075,
+SNP dominant LR,shuffled,25,0.5507,
+SNP dominant LR,shuffled,26,0.546144,
+SNP dominant LR,shuffled,27,0.479868,
+SNP dominant LR,shuffled,28,0.40522,
+SNP dominant LR,shuffled,29,0.44306,
+SNP dominant LR,shuffled,30,0.549915,
+SNP dominant LR,shuffled,31,0.525272,
+SNP dominant LR,shuffled,32,0.569845,
+SNP dominant LR,shuffled,33,0.442163,
+SNP dominant LR,shuffled,34,0.428764,
+SNP dominant LR,shuffled,35,0.546414,
+SNP dominant LR,shuffled,36,0.435317,
+SNP dominant LR,shuffled,37,0.482696,
+SNP dominant LR,shuffled,38,0.481753,
+SNP dominant LR,shuffled,39,0.53104,
+SNP dominant LR,shuffled,40,0.517349,
+SNP dominant LR,shuffled,41,0.502222,
+SNP dominant LR,shuffled,42,0.467098,
+SNP dominant LR,shuffled,43,0.523364,
+SNP dominant LR,shuffled,44,0.449367,
+SNP dominant LR,shuffled,45,0.528032,
+SNP dominant LR,shuffled,46,0.527022,
+SNP dominant LR,shuffled,47,0.541947,
+SNP dominant LR,shuffled,48,0.472843,
+SNP dominant LR,shuffled,49,0.464808,
+SNP dominant LR,shuffled,50,0.554538,
+SNP dominant LR,shuffled,51,0.477736,
+SNP dominant LR,shuffled,52,0.489878,
+SNP dominant LR,shuffled,53,0.451028,
+SNP dominant LR,shuffled,54,0.46519,
+SNP dominant LR,shuffled,55,0.488778,
+SNP dominant LR,shuffled,56,0.508753,
+SNP dominant LR,shuffled,57,0.509337,
+SNP dominant LR,shuffled,58,0.501347,
+SNP dominant LR,shuffled,59,0.483504,
+SNP dominant LR,shuffled,60,0.472462,
+SNP dominant LR,shuffled,61,0.527359,
+SNP dominant LR,shuffled,62,0.490888,
+SNP dominant LR,shuffled,63,0.534114,
+SNP dominant LR,shuffled,64,0.468579,
+SNP dominant LR,shuffled,65,0.419697,
+SNP dominant LR,shuffled,66,0.426475,
+SNP dominant LR,shuffled,67,0.549062,
+SNP dominant LR,shuffled,68,0.473382,
+SNP dominant LR,shuffled,69,0.529648,
+SNP dominant LR,shuffled,70,0.385246,
+SNP dominant LR,shuffled,71,0.55584,
+SNP dominant LR,shuffled,72,0.540645,
+SNP dominant LR,shuffled,73,0.448514,
+SNP dominant LR,shuffled,74,0.548591,
+SNP dominant LR,shuffled,75,0.552316,
+SNP dominant LR,shuffled,76,0.492369,
+SNP dominant LR,shuffled,77,0.478387,
+SNP dominant LR,shuffled,78,0.495893,
+SNP dominant LR,shuffled,79,0.456414,
+SNP dominant LR,shuffled,80,0.489653,
+SNP dominant LR,shuffled,81,0.447953,
+SNP dominant LR,shuffled,82,0.476816,
+SNP dominant LR,shuffled,83,0.522309,
+SNP dominant LR,shuffled,84,0.495534,
+SNP dominant LR,shuffled,85,0.535416,
+SNP dominant LR,shuffled,86,0.525339,
+SNP dominant LR,shuffled,87,0.48586,
+SNP dominant LR,shuffled,88,0.551014,
+SNP dominant LR,shuffled,89,0.478656,
+SNP dominant LR,shuffled,90,0.507204,
+SNP dominant LR,shuffled,91,0.512366,
+SNP dominant LR,shuffled,92,0.510167,
+SNP dominant LR,shuffled,93,0.567466,
+SNP dominant LR,shuffled,94,0.554875,
+SNP dominant LR,shuffled,95,0.549488,
+SNP dominant LR,shuffled,96,0.449861,
+SNP dominant LR,shuffled,97,0.481394,
+SNP dominant LR,shuffled,98,0.50312,
+SNP dominant LR,shuffled,99,0.508192,
+GEX P3 L1-LR,observed,-1,0.830945,0.739384
+GEX P3 L1-LR,shuffled,0,0.479449,0.473702
+GEX P3 L1-LR,shuffled,1,0.547858,0.539602
+GEX P3 L1-LR,shuffled,2,0.503358,0.489271
+GEX P3 L1-LR,shuffled,3,0.481773,0.462313
+GEX P3 L1-LR,shuffled,4,0.503089,0.517956
+GEX P3 L1-LR,shuffled,5,0.477534,0.466577
+GEX P3 L1-LR,shuffled,6,0.518834,0.515341
+GEX P3 L1-LR,shuffled,7,0.51721,0.509546
+GEX P3 L1-LR,shuffled,8,0.489751,0.510854
+GEX P3 L1-LR,shuffled,9,0.489657,0.482207
+GEX P3 L1-LR,shuffled,10,0.504654,0.524735
+GEX P3 L1-LR,shuffled,11,0.451931,0.412042
+GEX P3 L1-LR,shuffled,12,0.457654,0.435136
+GEX P3 L1-LR,shuffled,13,0.55628,0.552112
+GEX P3 L1-LR,shuffled,14,0.387119,0.392222
+GEX P3 L1-LR,shuffled,15,0.556303,0.557237
+GEX P3 L1-LR,shuffled,16,0.383627,0.384905
+GEX P3 L1-LR,shuffled,17,0.518028,0.510588
+GEX P3 L1-LR,shuffled,18,0.421891,0.410574
+GEX P3 L1-LR,shuffled,19,0.437121,0.459817
+GEX P3 L1-LR,shuffled,20,0.453508,0.436681
+GEX P3 L1-LR,shuffled,21,0.473691,0.450349
+GEX P3 L1-LR,shuffled,22,0.530841,0.531416
+GEX P3 L1-LR,shuffled,23,0.445005,0.415178
+GEX P3 L1-LR,shuffled,24,0.5186,0.500004
+GEX P3 L1-LR,shuffled,25,0.425605,0.419485
+GEX P3 L1-LR,shuffled,26,0.519254,0.495284
+GEX P3 L1-LR,shuffled,27,0.53174,0.526154
+GEX P3 L1-LR,shuffled,28,0.509595,0.49436
+GEX P3 L1-LR,shuffled,29,0.549879,0.544511
+GEX P3 L1-LR,shuffled,30,0.525305,0.49727
+GEX P3 L1-LR,shuffled,31,0.403086,0.43127
+GEX P3 L1-LR,shuffled,32,0.508696,0.488922
+GEX P3 L1-LR,shuffled,33,0.563778,0.556332
+GEX P3 L1-LR,shuffled,34,0.492285,0.524735
+GEX P3 L1-LR,shuffled,35,0.464686,0.451275
+GEX P3 L1-LR,shuffled,36,0.43433,0.449268
+GEX P3 L1-LR,shuffled,37,0.549132,0.523629
+GEX P3 L1-LR,shuffled,38,0.466192,0.474601
+GEX P3 L1-LR,shuffled,39,0.476459,0.483957
+GEX P3 L1-LR,shuffled,40,0.545593,0.521168
+GEX P3 L1-LR,shuffled,41,0.492729,0.492285
+GEX P3 L1-LR,shuffled,42,0.470456,0.460908
+GEX P3 L1-LR,shuffled,43,0.568672,0.543034
+GEX P3 L1-LR,shuffled,44,0.494072,0.462058
+GEX P3 L1-LR,shuffled,45,0.511627,0.488873
+GEX P3 L1-LR,shuffled,46,0.51276,0.519093
+GEX P3 L1-LR,shuffled,47,0.490884,0.490776
+GEX P3 L1-LR,shuffled,48,0.480827,0.451572
+GEX P3 L1-LR,shuffled,49,0.474649,0.479735
+GEX P3 L1-LR,shuffled,50,0.487695,0.47435
+GEX P3 L1-LR,shuffled,51,0.510938,0.514109
+GEX P3 L1-LR,shuffled,52,0.554972,0.538876
+GEX P3 L1-LR,shuffled,53,0.494271,0.489667
+GEX P3 L1-LR,shuffled,54,0.530666,0.506148
+GEX P3 L1-LR,shuffled,55,0.517152,0.483509
+GEX P3 L1-LR,shuffled,56,0.467255,0.479743
+GEX P3 L1-LR,shuffled,57,0.470783,0.450775
+GEX P3 L1-LR,shuffled,58,0.543712,0.53369
+GEX P3 L1-LR,shuffled,59,0.51262,0.502548
+GEX P3 L1-LR,shuffled,60,0.511721,0.495588
+GEX P3 L1-LR,shuffled,61,0.507878,0.496031
+GEX P3 L1-LR,shuffled,62,0.455867,0.429828
+GEX P3 L1-LR,shuffled,63,0.53153,0.51519
+GEX P3 L1-LR,shuffled,64,0.499539,0.473891
+GEX P3 L1-LR,shuffled,65,0.443335,0.426962
+GEX P3 L1-LR,shuffled,66,0.423222,0.391891
+GEX P3 L1-LR,shuffled,67,0.423584,0.410489
+GEX P3 L1-LR,shuffled,68,0.497098,0.487959
+GEX P3 L1-LR,shuffled,69,0.478456,0.476584
+GEX P3 L1-LR,shuffled,70,0.493535,0.490514
+GEX P3 L1-LR,shuffled,71,0.497495,0.494019
+GEX P3 L1-LR,shuffled,72,0.480652,0.482237
+GEX P3 L1-LR,shuffled,73,0.47445,0.433488
+GEX P3 L1-LR,shuffled,74,0.450191,0.474925
+GEX P3 L1-LR,shuffled,75,0.515809,0.50547
+GEX P3 L1-LR,shuffled,76,0.50977,0.504746
+GEX P3 L1-LR,shuffled,77,0.517806,0.514996
+GEX P3 L1-LR,shuffled,78,0.505437,0.505034
+GEX P3 L1-LR,shuffled,79,0.429202,0.396711
+GEX P3 L1-LR,shuffled,80,0.518881,0.484376
+GEX P3 L1-LR,shuffled,81,0.488945,0.483749
+GEX P3 L1-LR,shuffled,82,0.483934,0.468553
+GEX P3 L1-LR,shuffled,83,0.461497,0.474342
+GEX P3 L1-LR,shuffled,84,0.460037,0.466329
+GEX P3 L1-LR,shuffled,85,0.441046,0.40259
+GEX P3 L1-LR,shuffled,86,0.468447,0.458958
+GEX P3 L1-LR,shuffled,87,0.473539,0.465285
+GEX P3 L1-LR,shuffled,88,0.500882,0.487854
+GEX P3 L1-LR,shuffled,89,0.382225,0.384065
+GEX P3 L1-LR,shuffled,90,0.50671,0.507153
+GEX P3 L1-LR,shuffled,91,0.517829,0.461449
+GEX P3 L1-LR,shuffled,92,0.467991,0.436195
+GEX P3 L1-LR,shuffled,93,0.481587,0.491561
+GEX P3 L1-LR,shuffled,94,0.529498,0.518783
+GEX P3 L1-LR,shuffled,95,0.504234,0.53505
+GEX P3 L1-LR,shuffled,96,0.492659,0.499066
+GEX P3 L1-LR,shuffled,97,0.432239,0.419712
+GEX P3 L1-LR,shuffled,98,0.539356,0.531572
+GEX P3 L1-LR,shuffled,99,0.438826,0.401945
+GEX P3 L1-LR,shuffled within batch,0,0.737949,0.540324
+GEX P3 L1-LR,shuffled within batch,1,0.724903,0.466384
+GEX P3 L1-LR,shuffled within batch,2,0.763014,0.525028
+GEX P3 L1-LR,shuffled within batch,3,0.748777,0.499208
+GEX P3 L1-LR,shuffled within batch,4,0.746581,0.619798
+GEX P3 L1-LR,shuffled within batch,5,0.722649,0.468805
+GEX P3 L1-LR,shuffled within batch,6,0.709112,0.482385
+GEX P3 L1-LR,shuffled within batch,7,0.710011,0.463663
+GEX P3 L1-LR,shuffled within batch,8,0.716131,0.485198
+GEX P3 L1-LR,shuffled within batch,9,0.676303,0.422591
+GEX P3 L1-LR,shuffled within batch,10,0.722824,0.493585
+GEX P3 L1-LR,shuffled within batch,11,0.707967,0.466357
+GEX P3 L1-LR,shuffled within batch,12,0.732448,0.521181
+GEX P3 L1-LR,shuffled within batch,13,0.768527,0.468887
+GEX P3 L1-LR,shuffled within batch,14,0.749874,0.455687
+GEX P3 L1-LR,shuffled within batch,15,0.748683,0.541771
+GEX P3 L1-LR,shuffled within batch,16,0.7577,0.531435
+GEX P3 L1-LR,shuffled within batch,17,0.705047,0.44745
+GEX P3 L1-LR,shuffled within batch,18,0.750832,0.50873
+GEX P3 L1-LR,shuffled within batch,19,0.746709,0.520796
+GEX P3 L1-LR,shuffled within batch,20,0.735158,0.530952
+GEX P3 L1-LR,shuffled within batch,21,0.726538,0.478532
+GEX P3 L1-LR,shuffled within batch,22,0.728313,0.511676
+GEX P3 L1-LR,shuffled within batch,23,0.683638,0.465618
+GEX P3 L1-LR,shuffled within batch,24,0.72676,0.403901
+GEX P3 L1-LR,shuffled within batch,25,0.710747,0.486102
+GEX P3 L1-LR,shuffled within batch,26,0.749793,0.512499
+GEX P3 L1-LR,shuffled within batch,27,0.749197,0.50136
+GEX P3 L1-LR,shuffled within batch,28,0.73552,0.545352
+GEX P3 L1-LR,shuffled within batch,29,0.766226,0.526143
+GEX P3 L1-LR,shuffled within batch,30,0.781737,0.493801
+GEX P3 L1-LR,shuffled within batch,31,0.726117,0.475543
+GEX P3 L1-LR,shuffled within batch,32,0.703692,0.387785
+GEX P3 L1-LR,shuffled within batch,33,0.728745,0.471385
+GEX P3 L1-LR,shuffled within batch,34,0.701858,0.456118
+GEX P3 L1-LR,shuffled within batch,35,0.714753,0.479393
+GEX P3 L1-LR,shuffled within batch,36,0.724027,0.453268
+GEX P3 L1-LR,shuffled within batch,37,0.732168,0.553518
+GEX P3 L1-LR,shuffled within batch,38,0.724798,0.488817
+GEX P3 L1-LR,shuffled within batch,39,0.703704,0.49588
+GEX P3 L1-LR,shuffled within batch,40,0.743147,0.503649
+GEX P3 L1-LR,shuffled within batch,41,0.739339,0.457503
+GEX P3 L1-LR,shuffled within batch,42,0.737062,0.499691
+GEX P3 L1-LR,shuffled within batch,43,0.737424,0.472668
+GEX P3 L1-LR,shuffled within batch,44,0.696182,0.487292
+GEX P3 L1-LR,shuffled within batch,45,0.751428,0.479454
+GEX P3 L1-LR,shuffled within batch,46,0.725662,0.50373
+GEX P3 L1-LR,shuffled within batch,47,0.760632,0.517344
+GEX P3 L1-LR,shuffled within batch,48,0.736232,0.433597
+GEX P3 L1-LR,shuffled within batch,49,0.71668,0.397589
+GEX P3 L1-LR,shuffled within batch,50,0.760807,0.471993
+GEX P3 L1-LR,shuffled within batch,51,0.748111,0.446327
+GEX P3 L1-LR,shuffled within batch,52,0.743018,0.488614
+GEX P3 L1-LR,shuffled within batch,53,0.758903,0.534659
+GEX P3 L1-LR,shuffled within batch,54,0.752514,0.502417
+GEX P3 L1-LR,shuffled within batch,55,0.703762,0.4149
+GEX P3 L1-LR,shuffled within batch,56,0.727157,0.46064
+GEX P3 L1-LR,shuffled within batch,57,0.729598,0.442871
+GEX P3 L1-LR,shuffled within batch,58,0.707161,0.45683
+GEX P3 L1-LR,shuffled within batch,59,0.718642,0.490245
+GEX P3 L1-LR,shuffled within batch,60,0.735496,0.552276
+GEX P3 L1-LR,shuffled within batch,61,0.730965,0.450646
+GEX P3 L1-LR,shuffled within batch,62,0.70444,0.506375
+GEX P3 L1-LR,shuffled within batch,63,0.709672,0.464492
+GEX P3 L1-LR,shuffled within batch,64,0.755691,0.524162
+GEX P3 L1-LR,shuffled within batch,65,0.733966,0.490267
+GEX P3 L1-LR,shuffled within batch,66,0.735847,0.523187
+GEX P3 L1-LR,shuffled within batch,67,0.720079,0.467549
+GEX P3 L1-LR,shuffled within batch,68,0.733756,0.471604
+GEX P3 L1-LR,shuffled within batch,69,0.742481,0.447165
+GEX P3 L1-LR,shuffled within batch,70,0.764521,0.584369
+GEX P3 L1-LR,shuffled within batch,71,0.745705,0.485498
+GEX P3 L1-LR,shuffled within batch,72,0.735345,0.500336
+GEX P3 L1-LR,shuffled within batch,73,0.741021,0.499363
+GEX P3 L1-LR,shuffled within batch,74,0.75311,0.511547
+GEX P3 L1-LR,shuffled within batch,75,0.743684,0.513054
+GEX P3 L1-LR,shuffled within batch,76,0.716832,0.490374
+GEX P3 L1-LR,shuffled within batch,77,0.7082,0.502325
+GEX P3 L1-LR,shuffled within batch,78,0.716178,0.412681
+GEX P3 L1-LR,shuffled within batch,79,0.737856,0.495197
+GEX P3 L1-LR,shuffled within batch,80,0.759382,0.493884
+GEX P3 L1-LR,shuffled within batch,81,0.742376,0.551662
+GEX P3 L1-LR,shuffled within batch,82,0.755516,0.532571
+GEX P3 L1-LR,shuffled within batch,83,0.757361,0.490719
+GEX P3 L1-LR,shuffled within batch,84,0.765199,0.509818
+GEX P3 L1-LR,shuffled within batch,85,0.742715,0.512448
+GEX P3 L1-LR,shuffled within batch,86,0.714169,0.522895
+GEX P3 L1-LR,shuffled within batch,87,0.752573,0.527041
+GEX P3 L1-LR,shuffled within batch,88,0.710023,0.464297
+GEX P3 L1-LR,shuffled within batch,89,0.730976,0.451832
+GEX P3 L1-LR,shuffled within batch,90,0.741687,0.522492
+GEX P3 L1-LR,shuffled within batch,91,0.741523,0.516692
+GEX P3 L1-LR,shuffled within batch,92,0.712347,0.427504
+GEX P3 L1-LR,shuffled within batch,93,0.740787,0.536019
+GEX P3 L1-LR,shuffled within batch,94,0.734422,0.436751
+GEX P3 L1-LR,shuffled within batch,95,0.731467,0.516155
+GEX P3 L1-LR,shuffled within batch,96,0.758985,0.529344
+GEX P3 L1-LR,shuffled within batch,97,0.689291,0.42409
+GEX P3 L1-LR,shuffled within batch,98,0.728033,0.482806
+GEX P3 L1-LR,shuffled within batch,99,0.699289,0.41263
+GEX P3 XGBoost,observed,-1,0.911104,0.829046
+GEX P3 XGBoost,shuffled,0,0.474719,0.472868
+GEX P3 XGBoost,shuffled,1,0.520901,0.524513
+GEX P3 XGBoost,shuffled,2,0.436455,0.407751
+GEX P3 XGBoost,shuffled,3,0.527197,0.503518
+GEX P3 XGBoost,shuffled,4,0.547543,0.52168
+GEX P3 XGBoost,shuffled,5,0.467431,0.485554
+GEX P3 XGBoost,shuffled,6,0.538807,0.528286
+GEX P3 XGBoost,shuffled,7,0.431246,0.430331
+GEX P3 XGBoost,shuffled,8,0.446991,0.443482
+GEX P3 XGBoost,shuffled,9,0.446815,0.456063
+GEX P3 XGBoost,shuffled,10,0.498616,0.449108
+GEX P3 XGBoost,shuffled,11,0.476354,0.444799
+GEX P3 XGBoost,shuffled,12,0.491176,0.493269
+GEX P3 XGBoost,shuffled,13,0.53737,0.533551
+GEX P3 XGBoost,shuffled,14,0.480208,0.462148
+GEX P3 XGBoost,shuffled,15,0.512071,0.496694
+GEX P3 XGBoost,shuffled,16,0.515108,0.488009
+GEX P3 XGBoost,shuffled,17,0.511522,0.478543
+GEX P3 XGBoost,shuffled,18,0.513368,0.486903
+GEX P3 XGBoost,shuffled,19,0.534193,0.524488
+GEX P3 XGBoost,shuffled,20,0.486445,0.465151
+GEX P3 XGBoost,shuffled,21,0.492542,0.482847
+GEX P3 XGBoost,shuffled,22,0.537148,0.554727
+GEX P3 XGBoost,shuffled,23,0.495743,0.491298
+GEX P3 XGBoost,shuffled,24,0.509735,0.480954
+GEX P3 XGBoost,shuffled,25,0.477137,0.482489
+GEX P3 XGBoost,shuffled,26,0.490744,0.486543
+GEX P3 XGBoost,shuffled,27,0.502587,0.492257
+GEX P3 XGBoost,shuffled,28,0.489728,0.487077
+GEX P3 XGBoost,shuffled,29,0.479134,0.468321
+GEX P3 XGBoost,shuffled,30,0.507434,0.47547
+GEX P3 XGBoost,shuffled,31,0.499036,0.50945
+GEX P3 XGBoost,shuffled,32,0.532733,0.526804
+GEX P3 XGBoost,shuffled,33,0.442879,0.433467
+GEX P3 XGBoost,shuffled,34,0.558534,0.550369
+GEX P3 XGBoost,shuffled,35,0.436187,0.424423
+GEX P3 XGBoost,shuffled,36,0.521228,0.494169
+GEX P3 XGBoost,shuffled,37,0.472395,0.45301
+GEX P3 XGBoost,shuffled,38,0.50254,0.518245
+GEX P3 XGBoost,shuffled,39,0.55517,0.531329
+GEX P3 XGBoost,shuffled,40,0.461707,0.437067
+GEX P3 XGBoost,shuffled,41,0.472091,0.468132
+GEX P3 XGBoost,shuffled,42,0.538731,0.530301
+GEX P3 XGBoost,shuffled,43,0.5129,0.509178
+GEX P3 XGBoost,shuffled,44,0.511452,0.514582
+GEX P3 XGBoost,shuffled,45,0.488957,0.500086
+GEX P3 XGBoost,shuffled,46,0.503066,0.486876
+GEX P3 XGBoost,shuffled,47,0.516358,0.507295
+GEX P3 XGBoost,shuffled,48,0.48884,0.472325
+GEX P3 XGBoost,shuffled,49,0.525118,0.503384
+GEX P3 XGBoost,shuffled,50,0.531764,0.507058
+GEX P3 XGBoost,shuffled,51,0.458519,0.43721
+GEX P3 XGBoost,shuffled,52,0.50393,0.462293
+GEX P3 XGBoost,shuffled,53,0.523342,0.530117
+GEX P3 XGBoost,shuffled,54,0.568952,0.54387
+GEX P3 XGBoost,shuffled,55,0.530642,0.517368
+GEX P3 XGBoost,shuffled,56,0.511219,0.471204
+GEX P3 XGBoost,shuffled,57,0.55482,0.553187
+GEX P3 XGBoost,shuffled,58,0.562844,0.533408
+GEX P3 XGBoost,shuffled,59,0.534999,0.540137
+GEX P3 XGBoost,shuffled,60,0.550884,0.547514
+GEX P3 XGBoost,shuffled,61,0.495007,0.481559
+GEX P3 XGBoost,shuffled,62,0.523436,0.514601
+GEX P3 XGBoost,shuffled,63,0.463167,0.444842
+GEX P3 XGBoost,shuffled,64,0.461485,0.450276
+GEX P3 XGBoost,shuffled,65,0.448883,0.457484
+GEX P3 XGBoost,shuffled,66,0.506185,0.49733
+GEX P3 XGBoost,shuffled,67,0.468166,0.472196
+GEX P3 XGBoost,shuffled,68,0.472418,0.475238
+GEX P3 XGBoost,shuffled,69,0.424343,0.417667
+GEX P3 XGBoost,shuffled,70,0.512305,0.505153
+GEX P3 XGBoost,shuffled,71,0.583716,0.589028
+GEX P3 XGBoost,shuffled,72,0.441127,0.446298
+GEX P3 XGBoost,shuffled,73,0.46395,0.444393
+GEX P3 XGBoost,shuffled,74,0.4271,0.441777
+GEX P3 XGBoost,shuffled,75,0.479157,0.468132
+GEX P3 XGBoost,shuffled,76,0.476611,0.470083
+GEX P3 XGBoost,shuffled,77,0.493348,0.503715
+GEX P3 XGBoost,shuffled,78,0.492519,0.508328
+GEX P3 XGBoost,shuffled,79,0.473177,0.467542
+GEX P3 XGBoost,shuffled,80,0.483058,0.484334
+GEX P3 XGBoost,shuffled,81,0.49934,0.504105
+GEX P3 XGBoost,shuffled,82,0.534064,0.513951
+GEX P3 XGBoost,shuffled,83,0.485534,0.490718
+GEX P3 XGBoost,shuffled,84,0.56984,0.562606
+GEX P3 XGBoost,shuffled,85,0.508906,0.51065
+GEX P3 XGBoost,shuffled,86,0.527243,0.523409
+GEX P3 XGBoost,shuffled,87,0.447995,0.4641
+GEX P3 XGBoost,shuffled,88,0.474462,0.448566
+GEX P3 XGBoost,shuffled,89,0.453952,0.474516
+GEX P3 XGBoost,shuffled,90,0.529054,0.538986
+GEX P3 XGBoost,shuffled,91,0.526426,0.494477
+GEX P3 XGBoost,shuffled,92,0.494131,0.482472
+GEX P3 XGBoost,shuffled,93,0.529731,0.510995
+GEX P3 XGBoost,shuffled,94,0.458589,0.448584
+GEX P3 XGBoost,shuffled,95,0.497553,0.502508
+GEX P3 XGBoost,shuffled,96,0.474789,0.465031
+GEX P3 XGBoost,shuffled,97,0.49343,0.48006
+GEX P3 XGBoost,shuffled,98,0.468342,0.445937
+GEX P3 XGBoost,shuffled,99,0.441887,0.427118
+GEX P3 XGBoost,shuffled within batch,0,0.803847,0.44829
+GEX P3 XGBoost,shuffled within batch,1,0.799199,0.373718
+GEX P3 XGBoost,shuffled within batch,2,0.803882,0.453636
+GEX P3 XGBoost,shuffled within batch,3,0.805249,0.453975
+GEX P3 XGBoost,shuffled within batch,4,0.823703,0.54927
+GEX P3 XGBoost,shuffled within batch,5,0.801955,0.458853
+GEX P3 XGBoost,shuffled within batch,6,0.821916,0.415529
+GEX P3 XGBoost,shuffled within batch,7,0.812082,0.524608
+GEX P3 XGBoost,shuffled within batch,8,0.812234,0.4733
+GEX P3 XGBoost,shuffled within batch,9,0.810061,0.477099
+GEX P3 XGBoost,shuffled within batch,10,0.826214,0.512463
+GEX P3 XGBoost,shuffled within batch,11,0.796419,0.391081
+GEX P3 XGBoost,shuffled within batch,12,0.818564,0.521069
+GEX P3 XGBoost,shuffled within batch,13,0.816812,0.495167
+GEX P3 XGBoost,shuffled within batch,14,0.839202,0.578401
+GEX P3 XGBoost,shuffled within batch,15,0.834192,0.532739
+GEX P3 XGBoost,shuffled within batch,16,0.801103,0.433459
+GEX P3 XGBoost,shuffled within batch,17,0.793429,0.446008
+GEX P3 XGBoost,shuffled within batch,18,0.827733,0.587291
+GEX P3 XGBoost,shuffled within batch,19,0.798031,0.470937
+GEX P3 XGBoost,shuffled within batch,20,0.794924,0.536701
+GEX P3 XGBoost,shuffled within batch,21,0.801617,0.54406
+GEX P3 XGBoost,shuffled within batch,22,0.803018,0.449326
+GEX P3 XGBoost,shuffled within batch,23,0.821192,0.537938
+GEX P3 XGBoost,shuffled within batch,24,0.799935,0.416184
+GEX P3 XGBoost,shuffled within batch,25,0.82055,0.510769
+GEX P3 XGBoost,shuffled within batch,26,0.83084,0.53531
+GEX P3 XGBoost,shuffled within batch,27,0.793032,0.487713
+GEX P3 XGBoost,shuffled within batch,28,0.817501,0.477839
+GEX P3 XGBoost,shuffled within batch,29,0.806849,0.435406
+GEX P3 XGBoost,shuffled within batch,30,0.802329,0.395266
+GEX P3 XGBoost,shuffled within batch,31,0.801056,0.401898
+GEX P3 XGBoost,shuffled within batch,32,0.806686,0.465381
+GEX P3 XGBoost,shuffled within batch,33,0.799245,0.43561
+GEX P3 XGBoost,shuffled within batch,34,0.822197,0.481563
+GEX P3 XGBoost,shuffled within batch,35,0.821694,0.533923
+GEX P3 XGBoost,shuffled within batch,36,0.811416,0.447295
+GEX P3 XGBoost,shuffled within batch,37,0.790415,0.396786
+GEX P3 XGBoost,shuffled within batch,38,0.78961,0.44418
+GEX P3 XGBoost,shuffled within batch,39,0.823283,0.502113
+GEX P3 XGBoost,shuffled within batch,40,0.813121,0.450328
+GEX P3 XGBoost,shuffled within batch,41,0.835348,0.587355
+GEX P3 XGBoost,shuffled within batch,42,0.789049,0.386826
+GEX P3 XGBoost,shuffled within batch,43,0.818272,0.516415
+GEX P3 XGBoost,shuffled within batch,44,0.834531,0.568179
+GEX P3 XGBoost,shuffled within batch,45,0.811942,0.471659
+GEX P3 XGBoost,shuffled within batch,46,0.808858,0.4545
+GEX P3 XGBoost,shuffled within batch,47,0.819755,0.52963
+GEX P3 XGBoost,shuffled within batch,48,0.80359,0.476639
+GEX P3 XGBoost,shuffled within batch,49,0.821145,0.515364
+GEX P3 XGBoost,shuffled within batch,50,0.822208,0.502551
+GEX P3 XGBoost,shuffled within batch,51,0.80783,0.445836
+GEX P3 XGBoost,shuffled within batch,52,0.809968,0.514913
+GEX P3 XGBoost,shuffled within batch,53,0.816987,0.503906
+GEX P3 XGBoost,shuffled within batch,54,0.799666,0.417541
+GEX P3 XGBoost,shuffled within batch,55,0.830513,0.553243
+GEX P3 XGBoost,shuffled within batch,56,0.796524,0.469347
+GEX P3 XGBoost,shuffled within batch,57,0.805623,0.451235
+GEX P3 XGBoost,shuffled within batch,58,0.801383,0.447637
+GEX P3 XGBoost,shuffled within batch,59,0.793686,0.417377
+GEX P3 XGBoost,shuffled within batch,60,0.811124,0.494627
+GEX P3 XGBoost,shuffled within batch,61,0.815212,0.566435
+GEX P3 XGBoost,shuffled within batch,62,0.806697,0.449011
+GEX P3 XGBoost,shuffled within batch,63,0.81068,0.450305
+GEX P3 XGBoost,shuffled within batch,64,0.802177,0.441257
+GEX P3 XGBoost,shuffled within batch,65,0.820199,0.566373
+GEX P3 XGBoost,shuffled within batch,66,0.819545,0.539854
+GEX P3 XGBoost,shuffled within batch,67,0.823037,0.494219
+GEX P3 XGBoost,shuffled within batch,68,0.805179,0.504164
+GEX P3 XGBoost,shuffled within batch,69,0.813518,0.498297
+GEX P3 XGBoost,shuffled within batch,70,0.808975,0.490234
+GEX P3 XGBoost,shuffled within batch,71,0.801021,0.451816
+GEX P3 XGBoost,shuffled within batch,72,0.800881,0.508631
+GEX P3 XGBoost,shuffled within batch,73,0.808741,0.45786
+GEX P3 XGBoost,shuffled within batch,74,0.802749,0.481224
+GEX P3 XGBoost,shuffled within batch,75,0.844634,0.622538
+GEX P3 XGBoost,shuffled within batch,76,0.794223,0.467094
+GEX P3 XGBoost,shuffled within batch,77,0.826448,0.54208
+GEX P3 XGBoost,shuffled within batch,78,0.811521,0.475237
+GEX P3 XGBoost,shuffled within batch,79,0.802387,0.444091
+GEX P3 XGBoost,shuffled within batch,80,0.818809,0.551456
+GEX P3 XGBoost,shuffled within batch,81,0.81826,0.487676
+GEX P3 XGBoost,shuffled within batch,82,0.799759,0.487847
+GEX P3 XGBoost,shuffled within batch,83,0.811895,0.482955
+GEX P3 XGBoost,shuffled within batch,84,0.827242,0.552015
+GEX P3 XGBoost,shuffled within batch,85,0.796863,0.431331
+GEX P3 XGBoost,shuffled within batch,86,0.811159,0.529208
+GEX P3 XGBoost,shuffled within batch,87,0.800974,0.414056
+GEX P3 XGBoost,shuffled within batch,88,0.829765,0.607421
+GEX P3 XGBoost,shuffled within batch,89,0.788453,0.400475
+GEX P3 XGBoost,shuffled within batch,90,0.818763,0.52004
+GEX P3 XGBoost,shuffled within batch,91,0.826401,0.577712
+GEX P3 XGBoost,shuffled within batch,92,0.811556,0.455355
+GEX P3 XGBoost,shuffled within batch,93,0.805494,0.45277
+GEX P3 XGBoost,shuffled within batch,94,0.838186,0.527731
+GEX P3 XGBoost,shuffled within batch,95,0.799514,0.432345
+GEX P3 XGBoost,shuffled within batch,96,0.789096,0.423802
+GEX P3 XGBoost,shuffled within batch,97,0.829765,0.527896
+GEX P3 XGBoost,shuffled within batch,98,0.792319,0.385058
+GEX P3 XGBoost,shuffled within batch,99,0.835699,0.541708

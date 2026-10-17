@@ -1,0 +1,6 @@
+analysis,null scheme,n permutations,pooled ROC-AUC observed,pooled ROC-AUC null mean,pooled ROC-AUC null 95th pct,pooled ROC-AUC p,within-batch ROC-AUC observed,within-batch ROC-AUC null mean,within-batch ROC-AUC null 95th pct,within-batch ROC-AUC p
+GEX P3 L1-LR,shuffled,100,0.8309,0.4889,0.5501,0.0099,0.7394,0.4797,0.5398,0.0099
+GEX P3 L1-LR,shuffled within batch,100,0.8309,0.7327,0.7631,0.0099,0.7394,0.4886,0.5457,0.0099
+GEX P3 XGBoost,shuffled,100,0.9111,0.4975,0.5553,0.0099,0.829,0.4884,0.5477,0.0099
+GEX P3 XGBoost,shuffled within batch,100,0.9111,0.8112,0.8346,0.0099,0.829,0.4845,0.5777,0.0099
+SNP dominant LR,shuffled,100,0.691,0.495,0.5549,0.0099,,,,

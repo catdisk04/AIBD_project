@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import stats
+import statsmodels.api as sm
 from statsmodels.stats.multitest import multipletests
 from sklearn.model_selection import StratifiedKFold, cross_val_score
 from sklearn.linear_model import LogisticRegression
@@ -35,6 +36,20 @@ df = raw[raw[OUTCOME].isin([0, 1])].reset_index(drop=True)
 y = df[OUTCOME].astype(int).values
 print(f"{len(df)} subjects ({y.sum()} SLE, {(1 - y).sum()} controls), {len(snps)} SNPs")
 assert not df.duplicated().any()
+
+# the four pathways studied by Rupasree et al.; column names as in the source file
+PATHWAYS = {
+    "Folate / one-carbon": ["GCPII", "RFC", "TYMS 5'", "TYMS 3'", "MTHFR", "MTR", "MTRR A66G"],
+    "Xenobiotic metabolism": ["CYP1A1M1", "CYP1A1M2", "CYP1A1M4", "COMT", "GST T1", "GST M1"],
+    "Toll-like receptor": ["TLR4 299", "TLR4 399", "TLR5 rs5744168", "TLR5 rs2072493",
+                           "TLR7 rs179008", "TLR9  1237", "TLR9 1486",
+                           "TIRAPS180L* red filled rep smp"],
+    "STAT4 and other immune": ["TNF\u03b1 CCC haplotype", "stat4 new 7574865rs", "Stat4 rs7582694",
+                               "Stat4 rs3821236", "PTPN22 rs2476601", "OPN", "ER 2234693",
+                               "ER 9340799", "IRF5 rs2280714"],
+}
+assert sorted(sum(PATHWAYS.values(), [])) == sorted(snps)
+PATHWAY_OF = {s_: k for k, v in PATHWAYS.items() for s_ in v}
 
 # ------------------------------------------------------------------ QC
 miss = df[snps].isna().mean() * 100
@@ -86,6 +101,43 @@ assoc.to_csv(TAB / "snp_qc_association.csv", index=False, float_format="%.6g")
 print(assoc.head(8).round(4))
 print(f"Mean missingness {miss.mean():.2f}%, max {miss.max():.2f}% ({miss.idxmax()})")
 
+# ------------------------------------------------------------------ per-SNP effect sizes
+# genotype counts by group, and odds ratios from a logistic regression of SLE on one SNP
+# plus age and sex. Genotype 2 is the allele coded as "alternate" in the source file,
+# which for some SNPs is the more common allele in this cohort.
+eff = []
+for g in snps:
+    sub = df[[g] + COVARS].assign(y=y).dropna()
+    row = {"SNP": g, "pathway": PATHWAY_OF[g]}
+    for grp, lab_ in [(1, "SLE"), (0, "control")]:
+        c = sub.loc[sub.y == grp, g].value_counts()
+        row.update({f"{lab_} 0": int(c.get(0, 0)), f"{lab_} 1": int(c.get(1, 0)),
+                    f"{lab_} 2": int(c.get(2, 0))})
+        row[f"{lab_} carrier %"] = 100 * (sub.loc[sub.y == grp, g] >= 1).mean()
+    # exact test on carriers vs non-carriers (valid even when one cell is empty)
+    ct = pd.crosstab(sub[g] >= 1, sub.y).reindex(index=[False, True], columns=[0, 1], fill_value=0)
+    row["p Fisher (carrier)"] = stats.fisher_exact(ct.values)[1]
+    for model, x in [("dominant", (sub[g] >= 1).astype(float)), ("additive", sub[g]),
+                     ("recessive", (sub[g] == 2).astype(float))]:
+        # an empty cell (e.g. no control carriers) makes the OR inestimable
+        xb = (sub[g] >= 1) if model == "additive" else x
+        if x.nunique() < 2 or xb.nunique() < 2 or pd.crosstab(xb, sub.y).values.min() == 0:
+            continue
+        D = sm.add_constant(pd.concat([x.rename("snp"), sub[COVARS]], axis=1))
+        fit = sm.Logit(sub.y, D).fit(disp=0)
+        lo, hi = np.exp(fit.conf_int().loc["snp"])
+        row.update({f"OR {model}": np.exp(fit.params["snp"]), f"OR {model} low": lo,
+                    f"OR {model} high": hi, f"p {model}": fit.pvalues["snp"]})
+    eff.append(row)
+eff = pd.DataFrame(eff)
+ok_ = eff["p dominant"].notna()
+eff.loc[ok_, "q dominant (BH)"] = multipletests(eff.loc[ok_, "p dominant"], method="fdr_bh")[1]
+eff["q Fisher (BH)"] = multipletests(eff["p Fisher (carrier)"], method="fdr_bh")[1]
+eff = eff.sort_values("p dominant")
+eff.to_csv(TAB / "snp_effects.csv", index=False, float_format="%.6g")
+print(eff[["SNP", "OR dominant", "OR dominant low", "OR dominant high", "p dominant",
+           "q dominant (BH)"]].head(10).round(4))
+
 # ------------------------------------------------------------------ encodings
 def enc(kind):
     S = df[snps]
@@ -98,6 +150,13 @@ def enc(kind):
 
 X = {"Age + Sex": df[COVARS], "Additive": enc("additive"),
      "Dominant": enc("dominant"), "Recessive": enc("recessive")}
+for pw, cols in PATHWAYS.items():
+    X[pw] = X["Dominant"][cols + COVARS]
+# sensitivity: drop the SNPs that fail HWE in controls (p < 0.001), which may be mis-genotyped
+HWE_FAIL = [g for g in snps if hwe[g] < 1e-3]
+print("HWE-flagged SNPs excluded in sensitivity analysis:", HWE_FAIL)
+X["Additive, HWE-pass"] = X["Additive"].drop(columns=HWE_FAIL)
+X["Dominant, HWE-pass"] = X["Dominant"].drop(columns=HWE_FAIL)
 
 
 def pipe(kind):
@@ -117,6 +176,14 @@ configs = [("Age + Sex (LR)", "Age + Sex", "LR"),
            ("Recessive + Age + Sex (LR)", "Recessive", "LR"),
            ("Additive + Age + Sex (XGBoost)", "Additive", "XGB"),
            ("Encoding chosen in inner CV (LR)", None, "LR")]
+configs += [(f"{pw} SNPs, dominant + Age + Sex (LR)", pw, "LR") for pw in PATHWAYS]
+configs += [("Additive, HWE-failing SNPs removed (LR)", "Additive, HWE-pass", "LR"),
+            ("Dominant, HWE-failing SNPs removed (LR)", "Dominant, HWE-pass", "LR")]
+
+# out-of-fold SHAP values of the XGBoost model, averaged over repeats
+XGB_NAME = "Additive + Age + Sex (XGBoost)"
+shap_sum = np.zeros((len(y), X["Additive"].shape[1]))
+xval_sum = np.zeros_like(shap_sum)
 
 rows, oof = [], {}
 for rep in range(N_REPEATS):
@@ -137,6 +204,10 @@ for rep in range(N_REPEATS):
             m = pipe(model).fit(Xk.iloc[tr], y[tr])
             p = m.predict_proba(Xk.iloc[te])[:, 1]
             prob[te] = p
+            if name == XGB_NAME:
+                Xte_imp = m.named_steps["imp"].transform(Xk.iloc[te])
+                shap_sum[te] += shap.TreeExplainer(m.named_steps["m"]).shap_values(Xte_imp)
+                xval_sum[te] += Xte_imp
             row = {"model": name, "repeat": rep, "fold": k, "n_train": len(tr),
                    "n_test": len(te), **score(y[te], p)}
             if key is None:
@@ -168,18 +239,30 @@ def paired(a, b):
 
 tt = pd.DataFrame(paired("Dominant + Age + Sex (LR)", "Additive + Age + Sex (LR)")
                   + paired("Additive + Age + Sex (XGBoost)", "Additive + Age + Sex (LR)")
-                  + paired("Dominant + Age + Sex (LR)", "Age + Sex (LR)"))
+                  + paired("Dominant + Age + Sex (LR)", "Age + Sex (LR)")
+                  + sum([paired(f"{pw} SNPs, dominant + Age + Sex (LR)", "Age + Sex (LR)")
+                         for pw in PATHWAYS], [])
+                  + paired("Dominant, HWE-failing SNPs removed (LR)",
+                           "Additive, HWE-failing SNPs removed (LR)")
+                  + paired("Dominant, HWE-failing SNPs removed (LR)", "Age + Sex (LR)"))
 tt.round(4).to_csv(TAB / "snp_model_ttests.csv", index=False)
 print(tt.round(4))
 
-# ------------------------------------------------------------------ SHAP (descriptive)
-imp = SimpleImputer(strategy="most_frequent")
-Xa = pd.DataFrame(imp.fit_transform(X["Additive"]), columns=X["Additive"].columns)
-xgb = pipe("XGB").named_steps["m"].fit(Xa, y)
-sv = shap.TreeExplainer(xgb).shap_values(Xa)
-shap_mean = pd.Series(np.abs(sv).mean(0), index=Xa.columns).sort_values(ascending=False)
-shap_mean.round(4).to_csv(TAB / "snp_shap.csv", header=["mean |SHAP|"])
-print(shap_mean.head(6).round(3))
+# ------------------------------------------------------------------ SHAP (out-of-fold)
+cols_add = list(X["Additive"].columns)
+shap_oof = shap_sum / N_REPEATS
+xval_oof = xval_sum / N_REPEATS
+shap_tab = pd.DataFrame({
+    "mean |SHAP|": np.abs(shap_oof).mean(0),
+    "Spearman(value, SHAP)": [stats.spearmanr(xval_oof[:, i], shap_oof[:, i])[0]
+                              for i in range(len(cols_add))],
+}, index=cols_add).sort_values("mean |SHAP|", ascending=False)
+shap_tab.round(4).to_csv(TAB / "snp_shap.csv")
+pd.DataFrame(shap_oof, columns=cols_add).to_csv(TAB / "snp_shap_oof.csv", index=False,
+                                               float_format="%.6g")
+pd.DataFrame(xval_oof, columns=cols_add).assign(y=y) \
+  .to_csv(TAB / "snp_shap_oof_features.csv", index=False, float_format="%.6g")
+print(shap_tab.head(8).round(3))
 
 # ------------------------------------------------------------------ Figure: QC & association
 fig, axes = plt.subplots(1, 2, figsize=(12, 4))
@@ -202,13 +285,4 @@ for ax in axes:
 fig.tight_layout()
 savefig(fig, "fig_snp_qc_association")
 
-# SHAP figure
-fig, ax = plt.subplots(figsize=(5.5, 4))
-s = shap_mean.head(12)[::-1]
-ax.barh(s.index, s.values, color="#4C9BE8", height=.65)
-ax.set_xlabel("Mean |SHAP value|")
-ax.set_title("XGBoost (additive + age + sex)", fontsize=10)
-ax.spines[["top", "right"]].set_visible(False)
-fig.tight_layout()
-savefig(fig, "fig_snp_shap")
 print("done")

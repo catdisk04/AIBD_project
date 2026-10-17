@@ -8,3 +8,21 @@ Additive + Age + Sex (XGBoost) vs Additive + Age + Sex (LR),MCC,0.0884,1.6363,0.
 Dominant + Age + Sex (LR) vs Age + Sex (LR),ROC-AUC,0.0653,2.3232,0.0244
 Dominant + Age + Sex (LR) vs Age + Sex (LR),PR-AUC,0.1097,3.2705,0.002
 Dominant + Age + Sex (LR) vs Age + Sex (LR),MCC,0.1335,2.7425,0.0085
+"Folate / one-carbon SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",ROC-AUC,0.0196,0.8442,0.4026
+"Folate / one-carbon SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",PR-AUC,0.0584,2.4059,0.02
+"Folate / one-carbon SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",MCC,0.0214,0.4133,0.6812
+"Xenobiotic metabolism SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",ROC-AUC,0.0138,0.5781,0.5659
+"Xenobiotic metabolism SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",PR-AUC,0.0616,2.0619,0.0445
+"Xenobiotic metabolism SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",MCC,0.0088,0.1544,0.8779
+"Toll-like receptor SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",ROC-AUC,-0.0202,-0.8214,0.4154
+"Toll-like receptor SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",PR-AUC,-0.0055,-0.2399,0.8114
+"Toll-like receptor SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",MCC,-0.0511,-1.1655,0.2495
+"STAT4 and other immune SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",ROC-AUC,-0.0022,-0.0992,0.9214
+"STAT4 and other immune SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",PR-AUC,0.0116,0.3872,0.7003
+"STAT4 and other immune SNPs, dominant + Age + Sex (LR) vs Age + Sex (LR)",MCC,0.0198,0.4226,0.6745
+"Dominant, HWE-failing SNPs removed (LR) vs Additive, HWE-failing SNPs removed (LR)",ROC-AUC,0.0079,0.4595,0.6479
+"Dominant, HWE-failing SNPs removed (LR) vs Additive, HWE-failing SNPs removed (LR)",PR-AUC,0.0059,0.3504,0.7275
+"Dominant, HWE-failing SNPs removed (LR) vs Additive, HWE-failing SNPs removed (LR)",MCC,0.0448,0.7286,0.4697
+"Dominant, HWE-failing SNPs removed (LR) vs Age + Sex (LR)",ROC-AUC,0.0227,0.8757,0.3855
+"Dominant, HWE-failing SNPs removed (LR) vs Age + Sex (LR)",PR-AUC,0.0464,1.444,0.1551
+"Dominant, HWE-failing SNPs removed (LR) vs Age + Sex (LR)",MCC,0.0547,0.9881,0.328

@@ -41,3 +41,54 @@ for a in ax:
     a.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
 savefig(fig, "fig_roc_pr")
+
+
+# ------------------------------------------------------------------ SHAP summary figure
+import numpy as np
+from matplotlib.colors import LinearSegmentedColormap
+
+CMAP = LinearSegmentedColormap.from_list("lowhigh", ["#2166ac", "#d9d9d9", "#b2182b"])
+
+
+def beeswarm(ax, shap_df, feat_df, order, labels, title):
+    rng = np.random.default_rng(0)
+    for i, f in enumerate(order[::-1]):
+        sv = shap_df[f].values
+        fv = feat_df[f].values
+        # colour: feature value scaled to [0, 1] between its 5th and 95th percentiles
+        # (genotypes 0/1/2 map to low / middle / high)
+        lo, hi = np.percentile(fv, [5, 95])
+        if hi == lo:
+            lo, hi = fv.min(), fv.max()
+        c = np.clip((fv - lo) / (hi - lo), 0, 1)
+        jitter = rng.uniform(-0.32, 0.32, len(sv))
+        ax.scatter(sv, i + jitter, c=c, cmap=CMAP, s=5, alpha=.7, linewidths=0, vmin=0, vmax=1)
+    ax.axvline(0, color="k", lw=.6)
+    ax.set_yticks(range(len(order)), [labels.get(f, f) for f in order[::-1]], fontsize=8)
+    ax.set_xlabel("SHAP value (impact on predicted SLE log-odds)")
+    ax.set_title(title, loc="left", fontweight="bold", fontsize=10)
+    ax.spines[["top", "right"]].set_visible(False)
+
+
+snp_shap = pd.read_csv(TAB / "snp_shap_oof.csv")
+snp_feat = pd.read_csv(TAB / "snp_shap_oof_features.csv")
+snp_rank = pd.read_csv(TAB / "snp_shap.csv", index_col=0).index[:12].tolist()
+gex_shap = pd.read_csv(TAB / "gex_shap_oof.csv")
+gex_feat = pd.read_csv(TAB / "gex_shap_oof_features.csv")
+gex_rank = pd.read_csv(TAB / "gex_explanations.csv", index_col=0).index.tolist()
+de = pd.read_csv(TAB / "de_batch_adjusted.csv", index_col=0)
+gex_labels = {g: (f"{g} *" if de.loc[g, "q (BH)"] < 0.05 else g) for g in gex_rank}
+
+fig, ax = plt.subplots(1, 2, figsize=(12, 4.8))
+snp_labels = {"AGE": "Age", "sex": "Sex", "TIRAPS180L* red filled rep smp": "TIRAP S180L",
+              "stat4 new 7574865rs": "STAT4 rs7574865"}
+beeswarm(ax[0], snp_shap, snp_feat, snp_rank, snp_labels,
+         "A  SNP model (XGBoost, additive + age + sex)")
+beeswarm(ax[1], gex_shap, gex_feat, gex_rank, gex_labels,
+         "B  Expression model (XGBoost, leakage-free)")
+sm_ = plt.cm.ScalarMappable(cmap=CMAP)
+cb = fig.colorbar(sm_, ax=ax, fraction=.025, pad=.02, ticks=[0, 1])
+cb.ax.set_yticklabels(["low", "high"], fontsize=8)
+cb.set_label("Feature value", fontsize=8)
+savefig(fig, "fig_shap")
+print("done")

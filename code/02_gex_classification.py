@@ -21,52 +21,16 @@ Also: leave-one-batch-out (LOBO) for every batch that contains both classes.
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.model_selection import StratifiedKFold, StratifiedGroupKFold
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import roc_curve, precision_recall_curve
-from xgboost import XGBClassifier
+from scipy.stats import spearmanr
+from sklearn.metrics import roc_auc_score
+import shap
 
-from common import (load_expression, harmonize_scale, combat_ok_genes, disease_covariates,
-                    savefig, TAB, RESULTS, DATA, ALL_GENES, SEED)
+from common import savefig, TAB, DATA, ALL_GENES
 from combat import ComBat
+from gexlib import (N_REPEATS, N_FOLDS, fit_predict, df, batch, subject, covar, genes,
+                    idx_lab, idx_other, y, onehot, splits, fold_leakage_free)
 from metrics import score, fmt_table, corrected_ttest, METRICS
 
-N_REPEATS, N_FOLDS = 10, 5
-
-
-def make_model(kind):
-    if kind == "L1-LR":
-        return LogisticRegression(C=1, penalty="l1", solver="liblinear", max_iter=5000,
-                                  random_state=SEED)
-    if kind == "Batch only":
-        return LogisticRegression(C=1, max_iter=5000, random_state=SEED)
-    if kind == "XGBoost":
-        return XGBClassifier(n_estimators=300, max_depth=3, learning_rate=0.03, subsample=0.8,
-                             colsample_bytree=0.8, eval_metric="logloss", random_state=SEED,
-                             n_jobs=1)
-    raise ValueError(kind)
-
-
-def fit_predict(kind, Xtr, ytr, Xte):
-    sc = StandardScaler().fit(Xtr)
-    m = make_model(kind).fit(sc.transform(Xtr), ytr)
-    return m.predict_proba(sc.transform(Xte))[:, 1], m
-
-
-# ---------------------------------------------------------------- data
-df = harmonize_scale(load_expression())
-lab = df["Disease_State"].isin(["SLE", "Healthy Control"]).values
-y_all = (df["Disease_State"] == "SLE").astype(int).values
-batch = df["batch"].values
-subject = df["subject"].values
-covar = disease_covariates(df["Disease_State"])
-genes = combat_ok_genes(df)
-
-idx_lab = np.where(lab)[0]                 # the samples we classify
-idx_other = np.where(~lab)[0]              # Other/Unknown: only ever used to fit ComBat
-y = y_all[idx_lab]
-strata = np.char.add(np.char.add(batch[idx_lab].astype(str), "|"), y.astype(str))
 print(f"Classification set: {len(idx_lab)} samples from {len(set(subject[idx_lab]))} subjects "
       f"(SLE={y.sum()}, HC={(1 - y).sum()})")
 
@@ -80,34 +44,13 @@ X_orig = orig[ALL_GENES].values
 y_orig = (orig["Disease_State"] == "SLE").astype(int).values
 
 
-def splits(n, yy, grouped, rep):
-    if grouped:
-        cv = StratifiedGroupKFold(N_FOLDS, shuffle=True, random_state=SEED + rep)
-        return cv.split(np.zeros(n), strata, subject[idx_lab])
-    cv = StratifiedKFold(N_FOLDS, shuffle=True, random_state=SEED + rep)
-    return cv.split(np.zeros(n), yy)
-
-
-def fold_leakage_free(tr, te):
-    """P3: everything learned from the training fold (+ unlabelled Other samples)."""
-    fit_idx = np.concatenate([idx_lab[tr], idx_other])
-    sub = df.iloc[fit_idx]
-    g = combat_ok_genes(sub, genes)
-    cb = ComBat(mean_only=True)
-    Xfit = cb.fit_transform(sub[g].values, batch[fit_idx], covar[fit_idx])
-    Xtr = Xfit[: len(tr)]
-    Xte = cb.transform(df.iloc[idx_lab[te]][g].values, batch[idx_lab[te]])
-    return Xtr, Xte
-
-
-BATCHES = sorted(pd.unique(batch))
-
-
-def onehot(b):
-    return (np.asarray(b)[:, None] == np.array(BATCHES)[None, :]).astype(float)
-
-
 rows, oof, oof_p3 = [], {}, []
+# out-of-fold explanations for the leakage-free models: SHAP values of each test sample
+# from the XGBoost model that never saw it, and the L1-LR coefficients of every fold
+shap_sum = np.zeros((len(idx_lab), len(genes)))
+xval_sum = np.zeros((len(idx_lab), len(genes)))
+shap_n = np.zeros(len(idx_lab))
+coef_rows = []
 for proto in ["P0", "P1", "P2", "P3"]:
     kinds = ["L1-LR", "XGBoost"] + (["Batch only"] if proto == "P3" else [])
     for kind in kinds:
@@ -126,8 +69,15 @@ for proto in ["P0", "P1", "P2", "P3"]:
                     Xtr, Xte = X_global[tr], X_global[te]
                 else:
                     Xtr, Xte = fold_leakage_free(tr, te)
-                p, _ = fit_predict(kind, Xtr, yy[tr], Xte)
+                p, m, sc = fit_predict(kind, Xtr, yy[tr], Xte)
                 prob[te] = p
+                if proto == "P3" and kind == "XGBoost":
+                    sv = shap.TreeExplainer(m).shap_values(sc.transform(Xte))
+                    shap_sum[te] += sv
+                    xval_sum[te] += Xte
+                    shap_n[te] += 1
+                if proto == "P3" and kind == "L1-LR":
+                    coef_rows.append(dict(zip(genes, m.coef_[0]), repeat=rep, fold=k))
                 rows.append({"protocol": proto, "model": kind, "repeat": rep, "fold": k,
                              "n_train": len(tr), "n_test": len(te), **score(yy[te], p)})
             if rep == 0:
@@ -147,6 +97,39 @@ print(summary)
 # pooled out-of-fold predictions of the primary protocol, for the figures
 for (proto, kind), (yy, pp) in oof.items():
     pd.DataFrame({"y": yy, "prob": pp}).to_csv(TAB / f"oof_gex_{proto}_{kind}.csv", index=False)
+
+# ---------------------------------------------------------------- out-of-fold explanations
+assert (shap_n == N_REPEATS).all()
+shap_oof = shap_sum / N_REPEATS          # mean over repeats: one SHAP vector per sample
+xval_oof = xval_sum / N_REPEATS
+coefs = pd.DataFrame(coef_rows)[genes]
+expl = pd.DataFrame({
+    "mean |SHAP| (XGBoost, OOF)": np.abs(shap_oof).mean(0),
+    # direction: does higher expression push the prediction toward SLE?
+    "Spearman(expression, SHAP)": [spearmanr(xval_oof[:, i], shap_oof[:, i])[0]
+                                   for i in range(len(genes))],
+    "L1-LR coef mean": coefs.mean().values,
+    "L1-LR coef SD": coefs.std().values,
+    "L1-LR folds non-zero": (coefs != 0).mean().values,
+    "L1-LR sign agreement": [max((coefs[g] > 0).mean(), (coefs[g] < 0).mean()) for g in genes],
+}, index=genes).sort_values("mean |SHAP| (XGBoost, OOF)", ascending=False)
+# univariate check of each gene: ROC-AUC for SLE over the pooled (globally ComBat-
+# corrected) samples versus inside each batch. Within-batch AUC uses only ranks inside a
+# batch, so it is unaffected by batch shifts; a gene that looks strong pooled but ~0.5
+# within batches is mainly telling studies apart.
+b_lab = batch[idx_lab]
+both = [b for b in pd.unique(b_lab) if len(set(y[b_lab == b])) == 2]
+w_b = np.array([(b_lab == b).sum() for b in both])
+expl["pooled univariate AUC"] = [roc_auc_score(y, X_global[:, genes.index(g)]) for g in expl.index]
+expl["within-batch univariate AUC"] = [
+    np.average([roc_auc_score(y[b_lab == b], X_global[b_lab == b, genes.index(g)]) for b in both],
+               weights=w_b) for g in expl.index]
+expl.round(4).to_csv(TAB / "gex_explanations.csv")
+print(expl.round(3))
+pd.DataFrame(shap_oof, columns=genes).to_csv(TAB / "gex_shap_oof.csv", index=False,
+                                             float_format="%.6g")
+pd.DataFrame(xval_oof, columns=genes).assign(y=y, batch=batch[idx_lab]) \
+  .to_csv(TAB / "gex_shap_oof_features.csv", index=False, float_format="%.6g")
 
 # within-batch discrimination of the leakage-free models: does the model separate
 # SLE from HC inside a study, or only tell the studies apart?
@@ -191,7 +174,7 @@ print(pd.DataFrame(tt).round(4))
 # (L1-LR fitted on all labelled data after mean-only ComBat; descriptive only)
 fit_idx = np.concatenate([idx_lab, idx_other])
 Xall = ComBat(mean_only=True).fit_transform(df[genes].values[fit_idx], batch[fit_idx], covar[fit_idx])
-_, mfull = fit_predict("L1-LR", Xall[: len(idx_lab)], y, Xall[: len(idx_lab)])
+_, mfull, _ = fit_predict("L1-LR", Xall[: len(idx_lab)], y, Xall[: len(idx_lab)])
 pd.Series(mfull.coef_[0], index=genes, name="L1-LR coefficient (standardised)") \
   .round(4).to_csv(TAB / "gex_l1lr_coefficients.csv")
 
@@ -211,7 +194,7 @@ for b in both:
     Xte_raw = df.iloc[idx_lab[te]][genes].values
     Xte = Xte_raw - Xte_raw.mean(0) + Xtr.mean(0)
     for kind in ["L1-LR", "XGBoost"]:
-        p, _ = fit_predict(kind, Xtr, y[tr], Xte)
+        p, _, _ = fit_predict(kind, Xtr, y[tr], Xte)
         lobo.append({"held-out batch": b, "model": kind, "n": len(te),
                      "n SLE": int(y[te].sum()), **score(y[te], p)})
 lobo = pd.DataFrame(lobo)

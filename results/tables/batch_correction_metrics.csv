@@ -1,0 +1,9 @@
+,Before,Full ComBat,Mean-only ComBat,"Mean-only, no covariate"
+Mean batch R2 (genes),0.9186,0.0596,0.1306,0.0948
+Mean disease R2 (genes),0.1758,0.2869,0.2653,0.1924
+PC1 batch R2,0.9697,0.1426,0.2027,0.0166
+PC2 batch R2,0.9384,0.0138,0.0434,0.1174
+Silhouette (batch),0.4044,-0.1127,0.0563,0.04
+Silhouette (disease),0.1409,0.1047,0.2351,0.2007
+SD of Cohen's d across batches,0.5536,1.1443,0.5536,0.5536
+Sign concordance of d,0.6364,0.7273,0.6364,0.6364

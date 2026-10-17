@@ -1,0 +1,10 @@
+comparison,metric,diff,t,p
+Dominant + Age + Sex (LR) vs Additive + Age + Sex (LR),ROC-AUC,0.0435,2.3436,0.0232
+Dominant + Age + Sex (LR) vs Additive + Age + Sex (LR),PR-AUC,0.0457,2.1354,0.0378
+Dominant + Age + Sex (LR) vs Additive + Age + Sex (LR),MCC,0.0973,1.7882,0.0799
+Additive + Age + Sex (XGBoost) vs Additive + Age + Sex (LR),ROC-AUC,0.0351,1.5838,0.1197
+Additive + Age + Sex (XGBoost) vs Additive + Age + Sex (LR),PR-AUC,0.0253,0.8316,0.4097
+Additive + Age + Sex (XGBoost) vs Additive + Age + Sex (LR),MCC,0.0884,1.6363,0.1082
+Dominant + Age + Sex (LR) vs Age + Sex (LR),ROC-AUC,0.0653,2.3232,0.0244
+Dominant + Age + Sex (LR) vs Age + Sex (LR),PR-AUC,0.1097,3.2705,0.002
+Dominant + Age + Sex (LR) vs Age + Sex (LR),MCC,0.1335,2.7425,0.0085

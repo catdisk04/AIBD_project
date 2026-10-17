@@ -1,0 +1,7 @@
+comparison,metric,mean difference
+P1 - P3,ROC-AUC,-0.0054
+P1 - P3,PR-AUC,-0.0029
+P1 - P3,MCC,-0.0102
+P2 - P3,ROC-AUC,-0.0005
+P2 - P3,PR-AUC,-0.0002
+P2 - P3,MCC,-0.0076

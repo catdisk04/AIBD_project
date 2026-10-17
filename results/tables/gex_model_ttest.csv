@@ -1,0 +1,4 @@
+comparison,metric,diff,t,p
+XGBoost - L1-LR (P3),ROC-AUC,0.0781,5.8636,0.0
+XGBoost - L1-LR (P3),PR-AUC,0.0423,3.7222,0.0005
+XGBoost - L1-LR (P3),MCC,0.1555,3.9403,0.0003

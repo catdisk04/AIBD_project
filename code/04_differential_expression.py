@@ -33,7 +33,7 @@ for g in genes:
 res = pd.DataFrame(rows).set_index("gene")
 res["q (BH)"] = multipletests(res["p"], method="fdr_bh")[1]
 res = res.sort_values("p")
-res.round(6).to_csv(TAB / "de_batch_adjusted.csv")
+res.to_csv(TAB / "de_batch_adjusted.csv", float_format="%.6g")
 print(res.round(4))
 print(f"{(res['q (BH)'] < 0.05).sum()} / {len(res)} genes at q < 0.05")
 

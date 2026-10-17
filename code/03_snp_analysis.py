@@ -82,7 +82,7 @@ assoc = pd.DataFrame(assoc)
 ok = assoc.p.notna()
 assoc.loc[ok, "q (BH)"] = multipletests(assoc.loc[ok, "p"], method="fdr_bh")[1]
 assoc = assoc.sort_values("p")
-assoc.round(6).to_csv(TAB / "snp_qc_association.csv", index=False)
+assoc.to_csv(TAB / "snp_qc_association.csv", index=False, float_format="%.6g")
 print(assoc.head(8).round(4))
 print(f"Mean missingness {miss.mean():.2f}%, max {miss.max():.2f}% ({miss.idxmax()})")
 

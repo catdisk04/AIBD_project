@@ -139,5 +139,6 @@ def disease_covariates(labels):
 
 
 def savefig(fig, name):
-    fig.savefig(FIG / f"{name}.pdf", bbox_inches="tight")
-    fig.savefig(FIG / f"{name}.png", dpi=200, bbox_inches="tight")
+    # fixed metadata so that re-running the pipeline gives byte-identical files
+    fig.savefig(FIG / f"{name}.pdf", bbox_inches="tight", metadata={"CreationDate": None})
+    fig.savefig(FIG / f"{name}.png", dpi=200, bbox_inches="tight", metadata={"Software": None})

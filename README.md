@@ -20,7 +20,6 @@ code/
   04_differential_expression.py batch-adjusted DE with subject-clustered SEs
   05_figures.py                 combined ROC / precision-recall figure
 results/             every table (tables/) and figure (figures/) in the paper
-paper/               earlier manuscript draft (LaTeX)
 archive/             original notebooks, the methods draft and the earlier ComBat output
 ```
 

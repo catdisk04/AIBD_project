@@ -1,6 +1,8 @@
 # SLE prediction from genotype and gene-expression data
 
-Code and manuscript for *Prediction of Systemic Lupus Erythematosus from Genotype and Gene-Expression Data: Batch Correction, Leakage-Free Evaluation and the Limits of Multi-Study Pooling* (BT3041 course project, IIT Madras; prepared for bioRxiv).
+Code and data for *Prediction of Systemic Lupus Erythematosus from Genotype and Gene-Expression Data: Batch Correction and Leakage-Free Evaluation* (BT3041 course project, IIT Madras; prepared for bioRxiv).
+
+**Authors:** Vasudha Kannan, R Karthik, Aldis Daniel, Hitesh Kandarpa (Indian Institute of Technology Madras)
 
 ## Layout
 
